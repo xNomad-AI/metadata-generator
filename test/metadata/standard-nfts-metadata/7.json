@@ -1,0 +1,53 @@
+{
+  "name": "xNomad #7",
+  "symbol": "xnomad",
+  "description": "xNomad Genesis NFT is the first truly autonomous experimental AI-NFT collection. For the first time, NFT owners can chat with their NFTs, ask for claiming airdrops, tweeting on their behalf, executing automated on-chain transactions, and more.",
+  "seller_fee_basis_points": 250,
+  "image": "https://bafybeidtnhoqppfpprsm4l2h7q5a7vqwtj224oydwhu4hy3653ckxalzky.ipfs.w3s.link/7.png",
+  "external_url": "https://xnomad.ai/",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Magic Purple"
+    },
+    {
+      "trait_type": "Skin",
+      "value": "Dragonborn - Blaze"
+    },
+    {
+      "trait_type": "Face",
+      "value": "Serious"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Explorer"
+    },
+    {
+      "trait_type": "Hands",
+      "value": "Genie Lamp"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Tousled Layers - Relax"
+    },
+    {
+      "trait_type": "Ears",
+      "value": "Dragonborn - Blaze Ear"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://bafybeidtnhoqppfpprsm4l2h7q5a7vqwtj224oydwhu4hy3653ckxalzky.ipfs.w3s.link/7.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image",
+    "creators": [
+      {
+        "address": "8fjNqqA2JKvaVG3RusTqCRSkCzvMa7E96xuefrFW5BSR",
+        "share": 100
+      }
+    ]
+  }
+}
