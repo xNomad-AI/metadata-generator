@@ -35,5 +35,12 @@ cp .env.example .env
 node ./dist/index.js
 ```
 
+## Steps
+```shell
+Step1: Instruct OpenAI to study the Eliza character documentation and examples.  
+Step2: Instruct OpenAI to study the worldview documentation of your NFT collection.  
+Step3: Instruct OpenAI to generate the ai agent character based on the learned information and the NFT metadata.
+```
+
 ## NOTE
 **There is a probability that the AI NFT metadata generation may fail. Please rerun the script if this happens. The AI NFT metadata that has already been generated will not be generated again. If you need to regenerate, please delete the specified file under the ```AI_NFT_METADATA_PATH```.**
