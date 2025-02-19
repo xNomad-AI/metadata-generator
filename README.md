@@ -1,6 +1,13 @@
 # Generate AI NFT metadata
 **xNomad AI NFT metadata generator.**
 
+## Steps
+```shell
+Step1: Instruct OpenAI to study the Eliza character documentation and examples.  
+Step2: Instruct OpenAI to study the worldview documentation of your NFT collection.  
+Step3: Instruct OpenAI to generate the ai agent character based on the learned information and the NFT metadata.
+```
+
 ## Build
 ```shell
 npm install
@@ -33,13 +40,6 @@ WORLDVIEW_DOCUMENT_PATH="./example/worldview/worldview.md"
 # copy and edit the .env file
 cp .env.example .env
 node ./dist/index.js
-```
-
-## Steps
-```shell
-Step1: Instruct OpenAI to study the Eliza character documentation and examples.  
-Step2: Instruct OpenAI to study the worldview documentation of your NFT collection.  
-Step3: Instruct OpenAI to generate the ai agent character based on the learned information and the NFT metadata.
 ```
 
 ## NOTE
