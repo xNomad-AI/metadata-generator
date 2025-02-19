@@ -30,9 +30,9 @@ PROXY_AGENT=
 
 MAX_GENERATION_CONCURRENCY=5
 
-STANDARD_NFT_METADATA_PATH="./example/metadata/standard-nfts-metadata"
-AI_NFT_METADATA_PATH="./example/metadata/ai-nfts-metadata"
-WORLDVIEW_DOCUMENT_PATH="./example/worldview/worldview.md"
+WORLDVIEW_DOCUMENT_PATH="./example/worldview/worldview.md"  # Set the import path for your collection's worldview file.
+STANDARD_NFT_METADATA_PATH="./example/metadata/standard-nfts-metadata" # Set the import path for your collection's NFTs metadata.
+AI_NFT_METADATA_PATH="./example/metadata/ai-nfts-metadata"  # Set the export path for your collection's NFTs AI metadata.
 ```
 
 ### Start

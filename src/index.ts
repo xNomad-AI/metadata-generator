@@ -16,46 +16,62 @@ import { CharacterSchema } from "./schema/character.schema.js";
 
 dotenv.config();
 
+// Main function to generate ai nft metadata
 async function main() {
-    const concurrencyLimit = Number(process.env.MAX_GENERATION_CONCURRENCY) || 5;
-    const learnCharacterPrompt = getLearnCharacterPrompt();
     const openAIAgent = new OpenAIAgent();
+
+    const concurrencyLimit = Number(process.env.MAX_GENERATION_CONCURRENCY) || 5;
+
+    // Generate the prompt from eliza character document
+    const learnCharacterPrompt = getLearnCharacterPrompt();
+    // Let OpenAI learn the Eliza character document.
     const messageParams: ChatCompletionMessageParam[] = [{
         role: 'user',
         content: learnCharacterPrompt
     }];
+    // Save OpenAI response
     messageParams.push({
         role: 'assistant',
         content: await openAIAgent.sendMessage(messageParams)
     });
 
+    // Gererate the prompt from collection worldview document
     const learnWorldviewPrompt = getLearnWorldviewPrompt();
+    // Let OpenAI learn the collection worldview document.
     messageParams.push({
         role: 'user',
         content: learnWorldviewPrompt
     });
+    // Save OpenAI response
     messageParams.push({
         role: 'assistant',
         content: await openAIAgent.sendMessage(messageParams)
     });
 
+    // Retrieve the metadata for standard and AI NFTs
     const standardNftsMetadataMap = getStandardNFTsMetadata();
     const aiNftsMetadataMap = getAiNFTsMetadata();
+    // Get the list of file names from the standard NFT metadata map
     const fileNames = Array.from(standardNftsMetadataMap.keys());
 
     const processFile = async (fileName: string) => {
         const aiNftMetadata = aiNftsMetadataMap.get(fileName);
+        // Skip if AI NFT metadata already exists
         if (aiNftMetadata) {
             return;
         }
         const standardNftMetadata = standardNftsMetadataMap.get(fileName)!;
+
+        // Generate an ai nft character prompt from standard nft metadata
         const generateCharacterPrompt = getGenerateAiNftCharacterPrompt(standardNftMetadata);
         try {
+            // Let OpenAI generate AI NFT character.
             const aiNftCharacterContent = await openAIAgent.sendMessage([...messageParams, {
                 role: 'user',
                 content: generateCharacterPrompt
             }]);
             
+            // Extract the AI NFT character from the response and adjust its structure
             const aiNftCharacter = extractJson(aiNftCharacterContent) as Character;
             aiNftCharacter.clients = [];
             aiNftCharacter.plugins = [];
@@ -68,9 +84,10 @@ async function main() {
             } else {
                 aiNftCharacter.knowledge = [readFileContent(process.env.WORLDVIEW_DOCUMENT_PATH!)];
             }
-
+            // Validate the AI character object against the schema
             CharacterSchema.parse(aiNftCharacter)
             
+            // Create the AI NFT metadata object and write it to the path 'AI_NFT_METADATA_PATH'.
             const aiNftMetadata: AiNftMetadata = {
                 ...standardNftMetadata,
                 ai_agent: {
@@ -84,6 +101,7 @@ async function main() {
         }
     }
 
+    // Process each batch of files concurrently, ensuring all tasks are completed
     const batches: string[][] = [];
     for (let i = 0 ; i < fileNames.length; i += concurrencyLimit) {
         const batch = fileNames.slice(i, i + concurrencyLimit);
@@ -94,6 +112,7 @@ async function main() {
     }
 }
 
+// Function to generate a prompt for learning character data from specific files
 function getLearnCharacterPrompt(): string {
     const learnPrompt = 
 `According to the document:
@@ -105,13 +124,13 @@ ${JSON.stringify(c3poCharacter)}
 dobbyCharacter.json:
 ${JSON.stringify(dobbyCharacter)}
 
-c3poCharacter.json:
+eternalaiCharacter.json:
 ${JSON.stringify(eternalaiCharacter)}
 
-c3poCharacter.json:
+tateCharacter.json:
 ${JSON.stringify(tateCharacter)}
 
-c3poCharacter.json:
+trumpCharacter.json:
 ${JSON.stringify(trumpCharacter)}
 
 Learn the patterns within them.`;
@@ -119,6 +138,7 @@ Learn the patterns within them.`;
     return learnPrompt;
 }
 
+// Function to generate a prompt for studying the worldview document
 function getLearnWorldviewPrompt(): string {
     const worldviewDocument = readFileContent(process.env.WORLDVIEW_DOCUMENT_PATH!)
 
@@ -129,6 +149,8 @@ ${worldviewDocument}`;
     return learnPrompt;
 }
 
+// Function to generate a prompt for standard nft metadata
+// You can edit the 'Requirements' section according to your needs.
 function getGenerateAiNftCharacterPrompt(metadata: NftMetadata): string {
     const generatePrompt = 
 `Below is a specific metadata example: 
@@ -144,6 +166,8 @@ Requirements:
     return generatePrompt;
 }
 
+// Function to get standard nfts metadata from path 'STANDARD_NFT_METADATA_PATH'
+// Provided by the collection team.
 function getStandardNFTsMetadata(): Map<string, NftMetadata> {
     const { files, fileNames } = readJsonFiles(process.env.STANDARD_NFT_METADATA_PATH!);
     
@@ -156,6 +180,8 @@ function getStandardNFTsMetadata(): Map<string, NftMetadata> {
     return standardNftsMetadataMap;
 }
 
+// Function to get ai nfts metadata from path 'AI_NFT_METADATA_PATH'
+// Generated by the generator.
 function getAiNFTsMetadata(): Map<string, AiNftMetadata> {
     const { files, fileNames } = readJsonFiles(process.env.AI_NFT_METADATA_PATH!);
     
