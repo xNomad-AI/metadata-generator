@@ -1,4 +1,4 @@
-# Generate AI-NFT metadata
+# AI-NFT metadata generator
 This repository demonstrates how to generate the metadata for xNomad Genesis AI-NFTs. You can make slight modifications and use it to generate your own AI-NFT metadata.
 
 ## How It Works
