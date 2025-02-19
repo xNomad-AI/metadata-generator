@@ -1,12 +1,11 @@
-# Generate AI NFT metadata
-**xNomad AI NFT metadata generator.**
+# Generate AI-NFT metadata
+This repository demonstrates how to generate the metadata for xNomad Genesis AI-NFTs. You can make slight modifications and use it to generate your own AI-NFT metadata.
 
-## Steps
-```shell
-Step1: Instruct OpenAI to study the Eliza character documentation and examples.  
-Step2: Instruct OpenAI to study the worldview documentation of your NFT collection.  
-Step3: Instruct OpenAI to generate the ai agent character based on the learned information and the NFT metadata.
-```
+## How It Works
+1. Set up your favourite LLM api.
+2. Instruct LLM to study the Eliza character documentation and examples.  
+3. Instruct LLM to study the knowledge(like worldview, settings, stories) of your NFT collection.  
+4. Instruct LLM to generate the ai agent character based on the learned information and the NFT metadata.
 
 ## Build
 ```shell
@@ -16,7 +15,8 @@ npx tsc
 ```
 
 ## Run Example
-**Generate xNomad genesis AI NFT metadata.**
+Let's generate xNomad genesis AI-NFT metadata.
+
 ### .env
 ```shell
 AGENT_MODEL_PROVIDER="openai"
@@ -43,4 +43,4 @@ node ./dist/index.js
 ```
 
 ## NOTE
-**There is a probability that the AI NFT metadata generation may fail. Please rerun the script if this happens. The AI NFT metadata that has already been generated will not be generated again. If you need to regenerate, please delete the specified file under the ```AI_NFT_METADATA_PATH```.**
+**There is a probability that the AI-NFT metadata generation may fail. Please rerun the script if this happens. The AI-NFT metadata that has already been generated will not be generated again. If you need to regenerate, please delete the specified file under the ```AI_NFT_METADATA_PATH```.**
