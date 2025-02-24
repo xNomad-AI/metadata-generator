@@ -1,6 +1,11 @@
 # AI-NFT metadata generator
 This repository demonstrates how to generate the metadata for xNomad Genesis AI-NFTs. You can make slight modifications and use it to generate your own AI-NFT metadata.
 
+## Preparation
+- Learn [how AI-NFT works](https://docs.xnomad.ai/technology/how-ai-nft-works).
+- Learn [Eliza Character Files](https://elizaos.github.io/eliza/docs/core/characterfile/).
+- Learn [AI-NFT metadata](https://docs.xnomad.ai/technology/ai-nft-metadata).
+
 ## How It Works
 1. Set up your favourite LLM api.
 2. Instruct LLM to study the Eliza character documentation and examples.  
